@@ -1,0 +1,15 @@
+# global patterns
+.gradle
+.settings
+.project
+.classpath
+.springBeans
+rebel.xml
+
+# patterns for project root directory
+/bin
+/build
+/work
+/workspace
+/gradle.properties
+/target

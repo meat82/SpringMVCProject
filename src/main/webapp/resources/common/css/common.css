@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+body {
+    background-color: #FFFFFF;
+  	/* Margin bottom by footer height */
+  	margin-bottom: 60px;
+}
+div.jumbotron {
+    text-align: center;
+    color: #ffffff;
+    background-color: #88D2F2;
+}

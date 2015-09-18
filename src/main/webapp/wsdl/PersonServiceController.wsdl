@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ws.technia.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ws.technia.com" xmlns:intf="http://ws.technia.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://ws.technia.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="greeting">
+    <complexType/>
+   </element>
+   <element name="greetingResponse">
+    <complexType>
+     <sequence>
+      <element name="greetingReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="greetingResponse">
+
+      <wsdl:part element="impl:greetingResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="greetingRequest">
+
+      <wsdl:part element="impl:greeting" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PersonServiceController">
+
+      <wsdl:operation name="greeting">
+
+         <wsdl:input message="impl:greetingRequest" name="greetingRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:greetingResponse" name="greetingResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PersonServiceControllerSoapBinding" type="impl:PersonServiceController">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="greeting">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="greetingRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="greetingResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PersonServiceControllerService">
+
+      <wsdl:port binding="impl:PersonServiceControllerSoapBinding" name="PersonServiceController">
+
+         <wsdlsoap:address location="http://localhost:7001/mvc/services/PersonServiceController"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
