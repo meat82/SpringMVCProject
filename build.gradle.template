@@ -1,0 +1,61 @@
+def tomcat_home='C:/apps/tomcat8'
+def tomcat_bin=tomcat_home + '/bin'
+def tomcat_start=tomcat_bin + '/startup.bat'
+def tomcat_stop=tomcat_bin + '/shutdown.bat'
+def tomcat_webapps = tomcat_home + '/webapps'
+def web_app = 'F:/workspaces/springmvctest/build/libs'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
+		classpath("javax.servlet:servlet-api:2.5")
+		classpath("javax.servlet:jstl:1.2")
+		classpath("javax.servlet.jsp:jsp-api:2.1")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    testCompile("junit:junit")
+	compile("javax.servlet:servlet-api:2.5")
+	compile("javax.servlet:jstl:1.2")
+	compile("javax.servlet.jsp:jsp-api:2.1")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+task webDeploy(dependsOn: ':war') {
+    copy {
+		from web_app + '/springmvctest.war'
+        into tomcat_webapps
+    }
+}
+task stopTomcat(type:Exec) {
+  workingDir tomcat_bin
+
+  //on windows:
+  commandLine 'cmd', '/c', 'shutdown.bat'
+}
+task startTomcat(type:Exec) {
+  workingDir tomcat_bin
+
+  //on windows:
+  commandLine 'cmd', '/c', 'startup.bat'
+}

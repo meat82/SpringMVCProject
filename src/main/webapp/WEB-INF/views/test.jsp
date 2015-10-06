@@ -11,7 +11,7 @@
 	Test
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>  The time on the server MIKKO is ${serverTime}. </P>
 <a href="${webappRoot}">Home</a>
 </body>
 </html>

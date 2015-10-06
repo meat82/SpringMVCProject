@@ -5,6 +5,7 @@
 .classpath
 .springBeans
 rebel.xml
+build.gradle
 
 # patterns for project root directory
 /bin
