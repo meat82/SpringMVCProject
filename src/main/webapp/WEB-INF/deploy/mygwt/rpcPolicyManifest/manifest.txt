@@ -1,0 +1,3 @@
+# Module mygwt
+# RPC service class, partial path of RPC policy file
+com.meat.gwt.client.GreetingService, 1873A37959EED73AA2626BEA20C3163D.gwt.rpc

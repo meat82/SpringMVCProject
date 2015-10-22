@@ -9,11 +9,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  	<link href="<c:url value="/resources/css/common.css" />" rel="stylesheet">
-  	<link href="<c:url value="/resources/css/footer.css" />" rel="stylesheet">
+  	<link href="<c:url value="/views/resources/css/common.css" />" rel="stylesheet">
+  	<link href="<c:url value="/views/resources/css/footer.css" />" rel="stylesheet">
    	<!-- for FF, Chrome, Opera -->
-  	<link rel="icon" type="image/png" href="<c:url value="/resources/images/blogmarks-icon-16x16.png" />" sizes="16x16">
-  	<link rel="icon" type="image/png" href="<c:url value="/resources/images/blogmarks-icon-32x32.png" />" sizes="32x32">
+  	<link rel="icon" type="image/png" href="<c:url value="/views/resources/images/blogmarks-icon-16x16.png" />" sizes="16x16">
+  	<link rel="icon" type="image/png" href="<c:url value="/views/resources/images/blogmarks-icon-32x32.png" />" sizes="32x32">
 </head>
 <body>
 	<div id="wrapper">

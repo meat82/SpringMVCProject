@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +27,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -63,6 +61,14 @@ public class HomeController {
     @RequestMapping(value="/form", method=RequestMethod.GET)
     public ModelAndView showForm(Person person) {
         return new ModelAndView("form","command",new Person());
+    }
+    
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+    @RequestMapping(value="/angular", method=RequestMethod.GET)
+    public ModelAndView showAngular() {
+        return new ModelAndView("Angular");
     }
     
     @RequestMapping(value="/formProcess", method=RequestMethod.POST)

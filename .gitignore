@@ -6,6 +6,7 @@
 .springBeans
 rebel.xml
 build.gradle
+gradle.properties
 
 # patterns for project root directory
 /bin
@@ -14,3 +15,5 @@ build.gradle
 /workspace
 /gradle.properties
 /target
+/war
+/gwt-unitCache

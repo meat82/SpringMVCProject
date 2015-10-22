@@ -1,0 +1,2 @@
+serviceClass: com.meat.gwt.client.GreetingService
+path: 1873A37959EED73AA2626BEA20C3163D.gwt.rpc

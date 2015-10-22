@@ -9,12 +9,49 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
+		<gwtVersion>2.7.0</gwtVersion>
 		<org.springframework-version>4.1.6.RELEASE</org.springframework-version>
 		<org.springws-version>2.1.4.RELEASE</org.springws-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	 
+	<dependencyManagement>
+		<dependencies>
+			<!-- ensure all GWT deps use the same version (unless overridden) -->
+			<dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gwt</artifactId>
+				<version>${gwtVersion}</version>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+  
 	<dependencies>
+		<!-- GWT START -->
+		<dependency>
+		  <groupId>com.google.gwt</groupId>
+		  <artifactId>gwt-servlet</artifactId>
+		  <version>${gwtVersion}</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.google.gwt</groupId>
+		  <artifactId>gwt-user</artifactId>
+		  <version>${gwtVersion}</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.google.gwt</groupId>
+		  <artifactId>gwt-dev</artifactId>
+		  <version>${gwtVersion}</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.google.gwt</groupId>
+		  <artifactId>gwt-codeserver</artifactId>
+		  <version>${gwtVersion}</version>
+		</dependency>
+		<!-- GWT END -->
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework.ws</groupId>
