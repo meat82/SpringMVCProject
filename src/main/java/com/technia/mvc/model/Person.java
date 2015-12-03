@@ -9,6 +9,7 @@ public class Person {
 	private String eMail;
 	private String status;
 	private String passWord;
+	private String phone;
 	
 	public String getUserId() {
 		return userId;
@@ -52,6 +53,11 @@ public class Person {
 				+ ", lastName=" + lastName + ", eMail=" + eMail + ", status="
 				+ status + ", passWord=" + passWord + "]";
 	}
-	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getPhone() {
+		return phone;
+	}
 
 }

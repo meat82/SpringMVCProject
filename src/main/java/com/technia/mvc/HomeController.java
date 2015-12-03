@@ -2,10 +2,13 @@ package com.technia.mvc;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.meat.sql.jdbc.services.PersonService;
+import com.meat.sql.jdbc.services.PersonServiceImpl;
 import com.technia.mvc.model.Person;
 
 /**
@@ -23,6 +28,10 @@ import com.technia.mvc.model.Person;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	PersonService personService;
+
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -71,11 +80,24 @@ public class HomeController {
         return new ModelAndView("Angular");
     }
     
+    @RequestMapping(value="/showAllPersons", method=RequestMethod.GET)
+    public ModelAndView showAllPersons() {
+    	List<Person> persons = personService.getPersons();
+    	for (Person person : persons) {
+			System.out.println(person.toString());
+		}
+        return new ModelAndView("home");
+    }
+    
     @RequestMapping(value="/formProcess", method=RequestMethod.POST)
-    public String checkPersonInfo(@ModelAttribute("SpringWeb")Person person, 
-    		   ModelMap model) {
+    public String processPersonForm(@ModelAttribute("SpringWeb")Person person) {
+    	UUID id = UUID.randomUUID();
+    	person.setUserId(id.toString());
+    	person.setStatus("inactive");
         System.out.println("Person: " + person.toString());
+        personService.addPerson(person);
         return "home";
     }
+    
 	
 }

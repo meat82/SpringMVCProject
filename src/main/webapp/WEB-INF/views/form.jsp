@@ -35,12 +35,12 @@
 		                <form:input path="lastName" cssClass="form-control"/>
 		            </div>
 		            <div class="form-group">
-		                <label for="userId">User Id</label>
-		                <form:input path="userId" cssClass="form-control"/>
-		            </div>
-		            <div class="form-group">
 		                <label for="eMail">E-Mail</label>
 		                <form:input path="eMail" cssClass="form-control"/>
+		            </div>
+		            <div class="form-group">
+		                <label for="password">Phone</label>
+		                <form:input path="phone" cssClass="form-control"/>
 		            </div>
 		            <div class="form-group">
 		                <label for="password">Password</label>
