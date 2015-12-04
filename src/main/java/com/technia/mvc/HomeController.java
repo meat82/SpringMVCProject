@@ -83,10 +83,7 @@ public class HomeController {
     @RequestMapping(value="/showAllPersons", method=RequestMethod.GET)
     public ModelAndView showAllPersons() {
     	List<Person> persons = personService.getPersons();
-    	for (Person person : persons) {
-			System.out.println(person.toString());
-		}
-        return new ModelAndView("home");
+        return new ModelAndView("listPersons","persons",persons);
     }
     
     @RequestMapping(value="/formProcess", method=RequestMethod.POST)
@@ -94,7 +91,6 @@ public class HomeController {
     	UUID id = UUID.randomUUID();
     	person.setUserId(id.toString());
     	person.setStatus("inactive");
-        System.out.println("Person: " + person.toString());
         personService.addPerson(person);
         return "home";
     }
