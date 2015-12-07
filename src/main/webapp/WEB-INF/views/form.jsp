@@ -16,6 +16,7 @@
   	<link rel="icon" type="image/png" href="<c:url value="/views/resources/images/blogmarks-icon-32x32.png" />" sizes="32x32">
 </head>
 <body>
+	<!-- Add comment here -->
 	<div id="wrapper">
 		<div id="header">
 			<div class="jumbotron">
@@ -25,7 +26,7 @@
 		</div>
 		<div id="content">
 			<div style="width:30%;" ng-hide="toggleAddUser">
-		    	<form:form action="formProcess" method="post">
+		    	<form:form action="formProcess" method="post" commandName="person">
 		            <div class="form-group">
 		                <label for="firstName">First Name</label>
 		                <form:input path="firstName" cssClass="form-control"/>

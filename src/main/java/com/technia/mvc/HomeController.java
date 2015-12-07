@@ -69,7 +69,7 @@ public class HomeController {
 	 */
     @RequestMapping(value="/form", method=RequestMethod.GET)
     public ModelAndView showForm(Person person) {
-        return new ModelAndView("form","command",new Person());
+        return new ModelAndView("form","person",new Person());
     }
     
 	/**
