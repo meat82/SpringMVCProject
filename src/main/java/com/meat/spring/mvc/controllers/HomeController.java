@@ -1,4 +1,4 @@
-package com.technia.mvc;
+package com.meat.spring.mvc.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.services.PersonService;
 import com.meat.sql.jdbc.services.PersonServiceImpl;
-import com.technia.mvc.model.Person;
 
 /**
  * Handles requests for the application home page.
@@ -77,13 +77,13 @@ public class HomeController {
 	 */
     @RequestMapping(value="/angular", method=RequestMethod.GET)
     public ModelAndView showAngular() {
-        return new ModelAndView("Angular");
+        return new ModelAndView("angular");
     }
     
     @RequestMapping(value="/showAllPersons", method=RequestMethod.GET)
     public ModelAndView showAllPersons() {
     	List<Person> persons = personService.getPersons();
-        return new ModelAndView("listPersons","persons",persons);
+        return new ModelAndView("showPersons","persons",persons);
     }
     
     @RequestMapping(value="/formProcess", method=RequestMethod.POST)
@@ -92,7 +92,7 @@ public class HomeController {
     	person.setUserId(id.toString());
     	person.setStatus("inactive");
         personService.addPerson(person);
-        return "home";
+        return "formProcess";
     }
     
 	

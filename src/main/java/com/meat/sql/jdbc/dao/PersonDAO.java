@@ -2,7 +2,7 @@ package com.meat.sql.jdbc.dao;
 
 import java.util.List;
 
-import com.technia.mvc.model.Person;
+import com.meat.spring.mvc.model.Person;
 
 public interface PersonDAO {
 

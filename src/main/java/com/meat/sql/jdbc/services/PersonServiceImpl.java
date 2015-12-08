@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.dao.PersonDAO;
-import com.technia.mvc.model.Person;
 
 public class PersonServiceImpl implements PersonService {
 

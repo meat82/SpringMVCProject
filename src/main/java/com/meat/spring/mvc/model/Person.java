@@ -1,4 +1,4 @@
-package com.technia.mvc.model;
+package com.meat.spring.mvc.model;
 
 
 

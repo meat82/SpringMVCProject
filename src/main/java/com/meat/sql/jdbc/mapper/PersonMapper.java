@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.technia.mvc.model.Person;
+import com.meat.spring.mvc.model.Person;
 
 public class PersonMapper implements RowMapper<Person> {
 

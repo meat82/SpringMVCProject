@@ -7,9 +7,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.mapper.PersonMapper;
 import com.meat.sql.utils.SQLCommand;
-import com.technia.mvc.model.Person;
 
 public class PersonDAOImpl implements PersonDAO {
 

@@ -3,6 +3,8 @@ body {
     background-color: #FFFFFF;
   	/* Margin bottom by footer height */
   	margin-bottom: 60px;
+  	font-size: 20px;
+  	font-family: "Calibri",sans-serif;
 }
 div.jumbotron {
     text-align: center;
