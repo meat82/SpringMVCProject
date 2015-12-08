@@ -9,4 +9,6 @@ public interface PersonService {
 	public List<Person> getPersons();
 	
 	public void addPerson(Person person);
+
+	public boolean isValidUser(String userName, String passWord);
 }

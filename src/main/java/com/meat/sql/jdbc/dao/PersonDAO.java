@@ -9,4 +9,6 @@ public interface PersonDAO {
 	public List<Person> listAll();
 	
 	public void addPerson(Person person);
+
+	public boolean isValid(String userName, String passWord);
 }

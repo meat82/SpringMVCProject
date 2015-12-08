@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.services.PersonService;
-import com.meat.sql.jdbc.services.PersonServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -94,6 +92,5 @@ public class HomeController {
         personService.addPerson(person);
         return "formProcess";
     }
-    
 	
 }

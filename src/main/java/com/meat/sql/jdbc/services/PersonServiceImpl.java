@@ -24,4 +24,10 @@ public class PersonServiceImpl implements PersonService {
 		personDAO.addPerson(person);
 	}
 
+
+	@Override
+	public boolean isValidUser(String userName, String passWord) {
+		return personDAO.isValid(userName,passWord);
+	}
+
 }

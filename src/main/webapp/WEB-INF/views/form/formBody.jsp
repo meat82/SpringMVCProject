@@ -4,6 +4,14 @@
 <div id="content" style="width: 30%;">
 	<form:form action="formProcess" method="post" commandName="person">
 	    <div class="form-group">
+	        <label for="userName">User Name*</label>
+	        <form:input path="userName" class="form-control" id="userName" required="required"/>
+	    </div>
+	    <div class="form-group">
+	        <label for="password">Password*</label>
+	        <form:input path="passWord" class="form-control" id="password" required="required"/>
+	    </div>
+	    <div class="form-group">
 	        <label for="firstName">First Name*</label>
 	        <form:input path="firstName" class="form-control" id="firstName" required="required"/>
 	    </div>
@@ -18,10 +26,6 @@
 	    <div class="form-group">
 	        <label  for="phone">Phone</label>
 	        <form:input path="phone" class="form-control" id="phone"/>
-	    </div>
-	    <div class="form-group">
-	        <label for="password">Password*</label>
-	        <form:input path="passWord" class="form-control" id="password" required="required"/>
 	    </div>
 	    <div>
 	    	* Are mandatory fields
