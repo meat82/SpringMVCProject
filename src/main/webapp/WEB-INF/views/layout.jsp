@@ -12,19 +12,20 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <title><tiles:insertAttribute name="title" ignore="true" /></title>
     <tiles:insertAttribute name="commonStylecss" />
+    <tiles:insertAttribute name="customCss" />
     <script type="text/javascript"><tiles:insertAttribute name="headJS" /></script>
 </head>
 	<body>
-		<div>
+		<div class="layout_header">
 			<tiles:insertAttribute name="header" />
 		</div> 
-        <div style="float:left;padding:10px;width:15%;">
+        <div class="layout_menu">
         	<tiles:insertAttribute name="menu" />
         </div> 
-        <div style="float:left;padding:10px;width:80%;border-left:1px solid pink;">  
+        <div class="layout_body">  
         	<tiles:insertAttribute name="body" />
         </div>
-        <div>
+        <div class="layout_footer">
         	<tiles:insertAttribute name="footer" />
         </div>
 		<tiles:insertAttribute name="scriptjsp" />

@@ -6,6 +6,7 @@
     <definition name="base.definition" template="/WEB-INF/views/layout.jsp">
         <put-attribute name="title" value="Demo"></put-attribute>
         <put-attribute name="commonStylecss" value="/WEB-INF/views/common/stylecss.jsp"></put-attribute>
+        <put-attribute name="customCss" value=""></put-attribute>
         <put-attribute name="header" value="/WEB-INF/views/common/header.jsp"></put-attribute>
         <put-attribute name="menu" value="/WEB-INF/views/common/menu.jsp" /> 
         <put-attribute name="body" value=""></put-attribute>
