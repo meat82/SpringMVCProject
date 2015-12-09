@@ -8,6 +8,7 @@
     </definition>
     <definition name="loginSuccess" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/views/login/loginSuccess.jsp"></put-attribute>
+        <put-attribute name="scriptjsp" value="/WEB-INF/views/login/scripts/jqueryScript.jsp"></put-attribute>
     </definition>
     <definition name="loginDeny" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/views/login/loginDeny.jsp"></put-attribute>
