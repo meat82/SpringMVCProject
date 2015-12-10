@@ -45,13 +45,17 @@ public class LoginController {
 		boolean isValidUser = personService.isValidUser(person.getUserName(), person.getPassWord());
 		ModelAndView model= null;
 		if(isValidUser) {
-			logger.debug("User Login Successful");
+			if(logger.isDebugEnabled()){
+				logger.debug("User Login Successful");
+			}
         	request.setAttribute("loggedInUser", person.getUserName());
         	request.getSession().setAttribute("loggedInUser", person.getUserName());
         	model = new ModelAndView("loginSuccess");
 		}
 		else {
-			logger.debug("Failed!");
+			if(logger.isDebugEnabled()){
+				logger.debug("Failed!");
+			}
         	model = new ModelAndView("loginDeny");			
 		}
 		return model;
