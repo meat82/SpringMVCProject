@@ -5,5 +5,6 @@
 <tiles-definitions>
     <definition name="home" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/views/home/homeBody.jsp"></put-attribute>
+        <put-attribute name="customCss" value="/WEB-INF/views/home/stylecss.jsp"></put-attribute>
     </definition>
 </tiles-definitions>
