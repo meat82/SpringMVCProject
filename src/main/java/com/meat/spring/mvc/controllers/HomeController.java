@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.meat.spring.mvc.model.Person;
@@ -26,6 +27,8 @@ import com.meat.sql.jdbc.services.PersonService;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	private static final String EXISTS = "Username already exists: ";
 	
 	@Autowired
 	PersonService personService;
@@ -92,5 +95,26 @@ public class HomeController {
         personService.addPerson(person);
         return "formProcess";
     }
+	/**
+	 * Spring automatically binds the userId
+	 * @param person
+	 * @return String indicating success or failure of save
+	 */
+	@RequestMapping(value="/userId", method=RequestMethod.POST)
+	@ResponseBody
+	public String getUserID(Person person) {
+		//personService.save(person);
+		if(logger.isDebugEnabled()) {
+			logger.debug(person.toString());
+		}
+		List<Person> persons = personService.getPersonByUserName(person.getUserName());
+		for(Person person1 : persons) {
+			System.out.println(person1.toString());
+		}
+		if(persons.size() > 0) {
+			return EXISTS + persons.get(0).getUserName();
+		}
+		return "";
+	}
 	
 }

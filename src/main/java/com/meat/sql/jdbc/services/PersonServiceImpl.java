@@ -30,4 +30,10 @@ public class PersonServiceImpl implements PersonService {
 		return personDAO.isValid(userName,passWord);
 	}
 
+
+	@Override
+	public List<Person> getPersonByUserName(String userName) {
+		return personDAO.getPersonByUserName(userName);		
+	}
+
 }

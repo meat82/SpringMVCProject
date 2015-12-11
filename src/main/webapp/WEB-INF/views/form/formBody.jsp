@@ -2,10 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div id="content" style="width: 30%;">
-	<form:form action="formProcess" method="post" commandName="person">
+	<form:form action="formProcess" method="post" commandName="person" id="formProcess">
 	    <div class="form-group">
 	        <label for="userName">User Name*</label>
 	        <form:input path="userName" class="form-control" id="userName" required="required"/>
+	        <div id="userNameResponse" class="userNameResponse"></div>
 	    </div>
 	    <div class="form-group">
 	        <label for="password">Password*</label>

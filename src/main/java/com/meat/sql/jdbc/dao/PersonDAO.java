@@ -11,4 +11,6 @@ public interface PersonDAO {
 	public void addPerson(Person person);
 
 	public boolean isValid(String userName, String passWord);
+
+	public List<Person> getPersonByUserName(String userName);
 }

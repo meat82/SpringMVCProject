@@ -5,8 +5,11 @@
 <tiles-definitions>
     <definition name="form" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/views/form/formBody.jsp"></put-attribute>
+        <put-attribute name="scriptjsp" value="/WEB-INF/views/form/scripts/jqueryScript.jsp"></put-attribute>
+        <put-attribute name="customCss" value="/WEB-INF/views/form/stylecss.jsp"></put-attribute>
     </definition>
     <definition name="formProcess" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/views/form/formProcessBody.jsp"></put-attribute>
     </definition>
+    
 </tiles-definitions>

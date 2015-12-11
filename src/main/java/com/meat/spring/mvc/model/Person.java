@@ -48,12 +48,6 @@ public class Person {
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
-	@Override
-	public String toString() {
-		return "Person [userId=" + userId + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", eMail=" + eMail + ", status="
-				+ status + ", passWord=" + passWord + "]";
-	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
@@ -66,5 +60,11 @@ public class Person {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	@Override
+	public String toString() {
+		return "Person [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", eMail=" + eMail
+				+ ", status=" + status + ", passWord=" + passWord + ", phone=" + phone + ", userName=" + userName + "]";
+	}
+	
 
 }
