@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -10,6 +11,7 @@
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	<script src="../views/resources/scripts/metro.min.js"></script>
     <title><tiles:insertAttribute name="title" ignore="true" /></title>
     <tiles:insertAttribute name="commonStylecss" />
     <tiles:insertAttribute name="customCss" />

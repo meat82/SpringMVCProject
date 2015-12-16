@@ -81,6 +81,14 @@ public class HomeController {
         return new ModelAndView("angular");
     }
     
+	/**
+	 * Select tile view
+	 */
+    @RequestMapping(value="/tiles", method=RequestMethod.GET)
+    public ModelAndView showTile() {
+        return new ModelAndView("tiles");
+    }
+    
     @RequestMapping(value="/showAllPersons", method=RequestMethod.GET)
     public ModelAndView showAllPersons() {
     	List<Person> persons = personService.getPersons();
