@@ -4,58 +4,92 @@ def tomcat_start=tomcat_bin + '/startup.bat'
 def tomcat_stop=tomcat_bin + '/shutdown.bat'
 def tomcat_webapps = tomcat_home + '/webapps'
 def web_app = 'F:/workspaces/springmvctest/build/libs'
+def warName = 'springproject'
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
-		classpath("javax.servlet:servlet-api:2.5")
-		classpath("javax.servlet:jstl:1.2")
-		classpath("javax.servlet.jsp:jsp-api:2.1")
-    }
+ext{
+	springVersion='4.0.7.RELEASE'
+	gwtVersion='2.6.0'
+	javaServletApiVersion='2.5'
+	javaServletJstlVersion='1.2'
+	javaServletJpsVersion='2.1'
+	slf4jVersion='1.7.6'
+	mySqlVersion='5.1.26'
+	apacheTilesVersion='3.0.1'
+	apacheRequestAPIVersion='1.0.6'
+	velocityVersion='2.0'
+	freeMarkerVersion='2.3.15'
+	mvelVersion='2.0.11'
+	ognlVersion='2.7.3'
+	
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'war'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
+
+war {
+	archiveName warName + '.war'
+}
 
 repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    testCompile("junit:junit")
-	compile("javax.servlet:servlet-api:2.5")
-	compile("javax.servlet:jstl:1.2")
-	compile("javax.servlet.jsp:jsp-api:2.1")
+    compile ("org.springframework:spring-webmvc:" + springVersion)
+    compile ("org.springframework:spring-jdbc:" + springVersion)
+	compile("javax.servlet:servlet-api:" + javaServletApiVersion)
+	compile("javax.servlet:jstl:" + javaServletJstlVersion)
+	compile("javax.servlet.jsp:jsp-api:" + javaServletJpsVersion)
+	compile("org.slf4j:slf4j-api:" + slf4jVersion)
+	
+	//GWT dependency START
+	compile("com.google.gwt:gwt-servlet:" + gwtVersion)
+	compile("com.google.gwt:gwt-user:" + gwtVersion)
+	compile("com.google.gwt:gwt-dev:" + gwtVersion)
+	compile("com.google.gwt:gwt-codeserver:" + gwtVersion)
+	//GWT dependency END
+	
+	compile("mysql:mysql-connector-java:" + mySqlVersion)
+	
+	//Spring Tiles dependency START
+	compile("org.apache.tiles:tiles-api:" + apacheTilesVersion)
+	compile("org.apache.tiles:tiles-core:" + apacheTilesVersion)
+	compile("org.apache.tiles:tiles-jsp:" + apacheTilesVersion)
+	compile("org.apache.tiles:tiles-servlet:" + apacheTilesVersion)
+	compile("org.apache.tiles:tiles-template:" + apacheTilesVersion)
+	compile("org.apache.tiles:tiles-request-api:" + apacheRequestAPIVersion)
+	compile("org.apache.velocity:velocity-tools:" + velocityVersion)
+	compile("org.freemarker:freemarker:" + freeMarkerVersion)
+	compile("org.mvel:mvel2:" + mvelVersion)
+	compile("ognl:ognl:" + ognlVersion)
+	//Spring Tiles dependency END
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
-task webDeploy(dependsOn: ':war') {
+task webDeploy() {
     copy {
-		from web_app + '/springmvctest.war'
+		from web_app + '/' + warName + '.war'
         into tomcat_webapps
     }
 }
 task stopTomcat(type:Exec) {
   workingDir tomcat_bin
 
-  //on windows:
   commandLine 'cmd', '/c', 'shutdown.bat'
 }
 task startTomcat(type:Exec) {
   workingDir tomcat_bin
 
-  //on windows:
   commandLine 'cmd', '/c', 'startup.bat'
+}
+task explodedWar(type: Sync) {
+    into "$buildDir" + '/' + 'libs' + '/' + warName
+    with war
 }

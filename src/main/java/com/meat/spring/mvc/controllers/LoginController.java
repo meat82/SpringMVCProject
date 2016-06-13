@@ -18,7 +18,7 @@ import com.meat.sql.jdbc.services.PersonService;
 @Controller
 public class LoginController {
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
 	PersonService personService;
@@ -43,18 +43,18 @@ public class LoginController {
 
 		
 		boolean isValidUser = personService.isValidUser(person.getUserName(), person.getPassWord());
-		ModelAndView model= null;
+		ModelAndView model;
 		if(isValidUser) {
-			if(logger.isDebugEnabled()){
-				logger.debug("User Login Successful");
+			if(LOGGER.isDebugEnabled()){
+				LOGGER.debug("User Login Successful");
 			}
         	request.setAttribute("loggedInUser", person.getUserName());
         	request.getSession().setAttribute("loggedInUser", person.getUserName());
         	model = new ModelAndView("loginSuccess");
 		}
 		else {
-			if(logger.isDebugEnabled()){
-				logger.debug("Failed!");
+			if(LOGGER.isDebugEnabled()){
+				LOGGER.debug("Failed!");
 			}
         	model = new ModelAndView("loginDeny");			
 		}

@@ -56,10 +56,7 @@ public class HomeController {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+				
 		
 		model.addAttribute("serverTime", "nakki" );
 		
@@ -69,7 +66,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
     @RequestMapping(value="/form", method=RequestMethod.GET)
-    public ModelAndView showForm(Person person) {
+    public ModelAndView showForm() {
         return new ModelAndView("form","person",new Person());
     }
     
@@ -111,14 +108,12 @@ public class HomeController {
 	@RequestMapping(value="/userId", method=RequestMethod.POST)
 	@ResponseBody
 	public String getUserID(Person person) {
-		//personService.save(person);
+
 		if(logger.isDebugEnabled()) {
 			logger.debug(person.toString());
 		}
 		List<Person> persons = personService.getPersonByUserName(person.getUserName());
-		for(Person person1 : persons) {
-			System.out.println(person1.toString());
-		}
+
 		if(persons.size() > 0) {
 			return EXISTS + persons.get(0).getUserName();
 		}
