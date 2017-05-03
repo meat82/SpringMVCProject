@@ -16,4 +16,7 @@
     <definition name="loggedIn" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/views/login/loggedIn.jsp"></put-attribute>
     </definition>
+    <definition name="logout" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/views/login/logoutBody.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>

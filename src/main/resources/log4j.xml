@@ -12,6 +12,7 @@
 	<!-- Application Loggers -->
 	<logger name="com.meat">
 		<level value="debug" />
+		<appender-ref ref="console" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

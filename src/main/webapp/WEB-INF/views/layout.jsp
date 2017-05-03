@@ -11,7 +11,7 @@
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-	<script src="../views/resources/scripts/metro.min.js"></script>
+	<!-- <script src="../views/resources/scripts/metro.min.js"></script> -->
     <title><tiles:insertAttribute name="title" ignore="true" /></title>
     <tiles:insertAttribute name="commonStylecss" />
     <tiles:insertAttribute name="customCss" />

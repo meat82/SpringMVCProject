@@ -3,8 +3,7 @@ package com.meat.spring.mvc.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,7 +17,7 @@ import com.meat.sql.jdbc.services.PersonService;
 @Controller
 public class LoginController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger LOGGER = Logger.getLogger(LoginController.class);
 
 	@Autowired
 	PersonService personService;
@@ -60,4 +59,18 @@ public class LoginController {
 		}
 		return model;
 	}
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logoutUser(HttpServletRequest request, HttpServletResponse response,Person person) {
+        
+        String loggedInUser = (String) request.getSession().getAttribute("loggedInUser");
+        if(loggedInUser != null) {
+            if(LOGGER.isDebugEnabled()){
+                LOGGER.debug("Ready to logout user: " + loggedInUser);
+            }
+            request.getSession().removeAttribute("loggedInUser");
+            return new ModelAndView("logout");
+        }
+        //if user haven't logged in before log out go to login
+        return new ModelAndView("login", "person", new Person()); 
+    }
 }

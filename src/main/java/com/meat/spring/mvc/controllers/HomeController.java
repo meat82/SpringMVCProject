@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ import com.meat.sql.jdbc.services.PersonService;
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = Logger.getLogger(HomeController.class);
 
 	private static final String EXISTS = "Username already exists: ";
 	
@@ -39,7 +38,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("Welcome home! The client locale is {}." + locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -55,7 +54,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	    logger.info("Welcome home! The client locale is {}." + locale);
 				
 		
 		model.addAttribute("serverTime", "nakki" );

@@ -3,7 +3,7 @@ body {
     background-color: #FFFFFF;
   	/* Margin bottom by footer height */
   	margin-bottom: 60px;
-  	font-size: 20px;
+  	font-size: 14px;
   	font-family: "Calibri",sans-serif;
 }
 div.jumbotron {
@@ -13,7 +13,8 @@ div.jumbotron {
 }
 div.layout_body {
 	 float:left;
-	 padding:10px;
+	 padding-left:10px;
+	 padding-bottom:70px;
 	 width:80%;
 	 border-left:1px solid pink;"
 }

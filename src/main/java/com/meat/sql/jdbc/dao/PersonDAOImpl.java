@@ -4,12 +4,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.meat.spring.mvc.controllers.HomeController;
 import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.mapper.PersonMapper;
 import com.meat.sql.utils.SQLCommand;
@@ -17,7 +15,7 @@ import com.meat.sql.utils.SQLLogger;
 
 public class PersonDAOImpl implements PersonDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
+	private static final Logger logger = Logger.getLogger(PersonDAOImpl.class);
 	
 	@Autowired
 	private DataSource dataSource;
