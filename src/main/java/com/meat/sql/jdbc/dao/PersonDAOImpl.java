@@ -15,53 +15,67 @@ import com.meat.sql.utils.SQLLogger;
 
 public class PersonDAOImpl implements PersonDAO {
 
-	private static final Logger logger = Logger.getLogger(PersonDAOImpl.class);
-	
-	@Autowired
-	private DataSource dataSource;
+    private static final Logger logger = Logger.getLogger(PersonDAOImpl.class);
 
-	@Override
-	public List<Person> listAll() {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		if(logger.isDebugEnabled()) {
-			logger.debug("SQL Statement: " + SQLCommand.SQL_SELECT_ALL);
-		}
-		List<Person> persons = jdbcTemplate.query(SQLCommand.SQL_SELECT_ALL, new PersonMapper());
-		return persons;
-	}
+    @Autowired
+    private JdbcTemplate personTemplate;
 
-	@Override
-	public void addPerson(Person person) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		if(logger.isDebugEnabled()) {
-			logger.debug("SQL Statement: " + SQLLogger.getSQLLog(SQLCommand.SQL_ADD_PERSON, new String[]{person.getUserId(), person.getFirstName(),
-					person.getLastName(), person.geteMail(), person.getPhone(), person.getStatus(), person.getPassWord(),person.getUserName()}));
-		}
-		jdbcTemplate.update(SQLCommand.SQL_ADD_PERSON, new Object[] { person.getUserId(), person.getFirstName(),
-				person.getLastName(), person.geteMail(), person.getPhone(), person.getStatus(), person.getPassWord(),person.getUserName() });
-	}
 
-	@Override
-	public boolean isValid(String userName, String passWord) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		if(logger.isDebugEnabled()) {
-			logger.debug("SQL Statement: " + SQLLogger.getSQLLog(SQLCommand.SQL_SELECT_USERNAME_AND_PASSWORD, new String[]{userName,passWord}));
-		}
-		List<Person> persons = jdbcTemplate.query(SQLCommand.SQL_SELECT_USERNAME_AND_PASSWORD, new Object[]{userName,passWord},new PersonMapper());
-		if(persons.size() > 0) {
-			return true;
-		}
-		return false;
-	}
+    public JdbcTemplate getPersonTemplate() {
+        return personTemplate;
+    }
 
-	@Override
-	public List<Person> getPersonByUserName(String userName) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		if(logger.isDebugEnabled()) {
-			logger.debug("SQL Statement: " + SQLLogger.getSQLLog(SQLCommand.SQL_SELECT_USERNAME, new String[]{userName}));
-		}
+    public void setPersonTemplate(JdbcTemplate personTemplate) {
+        this.personTemplate = personTemplate;
+    }
 
-		return jdbcTemplate.query(SQLCommand.SQL_SELECT_USERNAME, new Object[]{userName},new PersonMapper());
-	}
+    @Override
+    public void addPerson(Person person) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(
+                    "SQL Statement: " + SQLLogger.getSQLLog(SQLCommand.SQL_ADD_PERSON,
+                            new String[] { person.getUserId(), person.getFirstName(), person.getLastName(),
+                                    person.geteMail(), person.getPhone(), person.getStatus(), person.getPassWord(),
+                                    person.getUserName() }));
+        }
+        personTemplate
+                .update(SQLCommand.SQL_ADD_PERSON,
+                        new Object[] { person.getUserId(), person.getFirstName(), person.getLastName(),
+                                person.geteMail(), person.getPhone(), person.getStatus(), person.getPassWord(),
+                                person.getUserName() });
+    }
+
+    @Override
+    public List<Person> getPersonByUserName(String userName) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(
+                    "SQL Statement: " + SQLLogger.getSQLLog(SQLCommand.SQL_SELECT_USERNAME, new String[] { userName }));
+        }
+
+        return personTemplate.query(SQLCommand.SQL_SELECT_USERNAME, new Object[] { userName }, new PersonMapper());
+    }
+
+    @Override
+    public boolean isValid(String userName, String passWord) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("SQL Statement: " + SQLLogger.getSQLLog(SQLCommand.SQL_SELECT_USERNAME_AND_PASSWORD,
+                    new String[] { userName, passWord }));
+        }
+        List<Person> persons = personTemplate.query(SQLCommand.SQL_SELECT_USERNAME_AND_PASSWORD,
+                new Object[] { userName, passWord }, new PersonMapper());
+        if (persons.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<Person> listAll() {
+        if (logger.isDebugEnabled()) {
+            logger.debug("SQL Statement: " + SQLCommand.SQL_SELECT_ALL);
+        }
+        List<Person> persons = this.personTemplate.query(SQLCommand.SQL_SELECT_ALL, new PersonMapper());
+        return persons;
+    }
 
 }

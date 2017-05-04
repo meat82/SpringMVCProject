@@ -10,10 +10,20 @@ import com.meat.sql.jdbc.dao.PersonDAO;
 public class PersonServiceImpl implements PersonService {
 
 	@Autowired
-	PersonDAO personDAO;
+	private PersonDAO personDAO;
 	
 	
-	@Override
+	public PersonDAO getPersonDAO() {
+        return personDAO;
+    }
+
+
+    public void setPersonDAO(PersonDAO personDAO) {
+        this.personDAO = personDAO;
+    }
+
+
+    @Override
 	public List<Person> getPersons() {
 		return personDAO.listAll();
 	}
