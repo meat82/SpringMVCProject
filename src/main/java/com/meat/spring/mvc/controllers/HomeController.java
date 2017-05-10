@@ -2,20 +2,24 @@ package com.meat.spring.mvc.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.meat.spring.mvc.model.ModelMapper;
 import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.services.PersonService;
 
@@ -86,9 +90,14 @@ public class HomeController {
     }
     
     @RequestMapping(value="/showAllPersons", method=RequestMethod.GET)
-    public ModelAndView showAllPersons() {
+    public String showAllPersons(ModelMap model) {
     	List<Person> persons = personService.getPersons();
-        return new ModelAndView("showPersons","persons",persons);
+    	
+    	model.addAttribute("persons", persons);
+    	Person person = new Person();
+    	person.setFirstName("mikko");
+    	model.addAttribute("person", person);
+    	return "showPersons";
     }
     
     @RequestMapping(value="/formProcess", method=RequestMethod.POST)

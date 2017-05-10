@@ -1,8 +1,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false" %>
 
+<div id="nav-sidepanel" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<form:form action="formProcess" method="post" modelAttribute="person">
+	    <div class="form-group">
+	        <label for="userName">User Name</label>
+	        <input name="userName" value="${person.userName}"/>
+	    </div>
+		<div class="form-group">
+		    <label for="firstName">First Name</label>
+		    <input name="firstName" value="${person.firstName}"/>
+		</div>
+		<div class="form-group">
+		    <label for="lastName">Last Name</label>
+		    <input name="lastName" value="${person.lastName}"/>
+		</div>
+		<div class="form-group">
+		    <label for="eMail">E-Mail</label>
+		    <input name="email" value="${person.eMail}"/>
+		</div>
+		<div class="form-group">
+		    <label  for="phone">Phone</label>
+		    <input name="phone" value="${person.phone}"/>
+		</div>
+	</form:form>
+</div>
+
 <div id="content">
-	<table id="person" class="display" style="width: 100%;">
+	<table id="personsTable" class="display" style="width: 100%;">
         <thead>
             <tr>
             	<th>Username</th>
@@ -24,14 +51,18 @@
             </tr>
         </tfoot>
         <tbody>
-        	<c:forEach var="user" items="${persons}">
+        	<c:forEach var="personObject" items="${persons}" varStatus="status">
         		<tr>
-        			<td>${user.userName}</td>
-        			<td>${user.firstName}</td>
-        			<td>${user.lastName}</td>
-					<td>${user.eMail}</td>
-					<td>${user.phone}</td>
-					<td>${user.status}</td>
+        			<c:set var="userIdIndex" value="person_${status.index}"/>
+        			<td id="${userIdIndex}" class="userName">
+        				<input type="hidden" name="id" id="${userIdIndex}_hidden" value="${personObject.userId}">
+        				<a>${personObject.userName}</a>
+        			</td> 
+        			<td>${personObject.firstName}</td>
+        			<td>${personObject.lastName}</td>
+					<td>${personObject.eMail}</td>
+					<td>${personObject.phone}</td>
+					<td>${personObject.status}</td>
         		</tr>
         	</c:forEach>
 		</tbody>

@@ -6,5 +6,6 @@
     <definition name="showPersons" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/views/persons/personsBody.jsp"></put-attribute>
         <put-attribute name="scriptjsp" value="/WEB-INF/views/persons/scripts/jqueryScript.jsp"></put-attribute>
+        <put-attribute name="customCss" value="/WEB-INF/views/persons/stylecss.jsp"></put-attribute>
     </definition>
 </tiles-definitions>

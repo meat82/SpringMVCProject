@@ -8,6 +8,19 @@
 		if(!sessionid || 0 === sessionid.length) {
 			$( ".menuLogout" ).remove();	
 		}	
-		$('#person').DataTable();
+		$('#personsTable').DataTable();
+		$("#nav-sidepanel").hide();
+		$('#personsTable .userName').click(function() {
+			var id = $(this).attr("id");
+			var hidden_id = "#" + id + "_hidden";
+			var input_value = $(hidden_id).val();
+			console.log("input_value: " + input_value);
+			console.log("id: " + id);
+			$("#nav-sidepanel").show("slow");
+		});
+		$('.closebtn').click(function() {
+			$("#nav-sidepanel").hide("slow");
+		});
 	} );
+	
 </script>

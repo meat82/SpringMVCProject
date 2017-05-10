@@ -12,6 +12,17 @@ public class Person {
 	private String phone;
 	private String userName;
 	
+	public Person() {
+	    setFirstName("");
+	    setLastName("");
+	    setUserId("");
+	    seteMail("");
+	    setStatus("");
+	    setPassWord("");
+	    setPhone("");
+	    setUserName("");
+    }
+	
 	public String getUserId() {
 		return userId;
 	}
