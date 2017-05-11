@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.meat.spring.mvc.ajax.PersonResponseBody;
+import com.meat.spring.mvc.ajax.Views;
 import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.services.PersonService;
 
 /**
- * Handles requests for the application home page.
+ * Handles all Ajax calls
  */
-@Controller
+@RestController
 public class AjaxController {
 
     private static final String EXISTS = "Username already exists: ";
@@ -52,21 +55,30 @@ public class AjaxController {
 
     /**
      * Get person using unique userId
+     * @ResponseBody, not necessary, since class is annotated with @RestController
+     * @RequestBody - Convert the json data into object (SearchCriteria) mapped by field name.
+     * @JsonView(Views.Public.class) - Optional, filters json data to display
      * 
      * @param userId
      * @return Person
      */
+    @JsonView(Views.Public.class)
     @RequestMapping(value = "/getPerson", method = RequestMethod.POST)
     @ResponseBody
     public PersonResponseBody getUser(@RequestBody String userId) {
-        
+
         logger.info("userId: " + userId);
         PersonResponseBody result = new PersonResponseBody();
         Person person = personService.getPerson(userId);
-        result.setCode("200");
-        result.setMsg("");
-        result.setResult(person);
-        
+        if (person != null) {
+            result.setCode("200");
+            result.setMsg("");
+            result.setResult(person);
+        } else {
+            result.setCode("204");
+            result.setMsg("No person found!");
+        }
+
         return result;
     }
 }

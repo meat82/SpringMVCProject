@@ -8,8 +8,10 @@
     right: 0;
     background-color: #88d2f2;
     overflow-x: hidden;
-    transition: 0.5s;
     padding-top: 60px;
+    padding-left: 10px;
+    border-style: solid;
+    border-color: white;
 }
 
 .sidenav a {

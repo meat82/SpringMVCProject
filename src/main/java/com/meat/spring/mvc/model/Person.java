@@ -1,15 +1,31 @@
 package com.meat.spring.mvc.model;
 
-
+import com.fasterxml.jackson.annotation.JsonView;
+import com.meat.spring.mvc.ajax.Views;
 
 public class Person {
+    
 	private String userId;
+	
+	@JsonView(Views.Public.class)
 	private String firstName;
+	
+	@JsonView(Views.Public.class)
 	private String lastName;
+	
+	@JsonView(Views.Public.class)
 	private String eMail;
+	
+	@JsonView(Views.Public.class)
 	private String status;
+	
+	@JsonView(Views.Public.class)
 	private String passWord;
+	
+	@JsonView(Views.Public.class)
 	private String phone;
+	
+	@JsonView(Views.Public.class)
 	private String userName;
 	
 	public Person() {

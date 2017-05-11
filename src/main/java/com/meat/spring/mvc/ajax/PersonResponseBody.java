@@ -14,6 +14,12 @@ public class PersonResponseBody {
     @JsonView(Views.Public.class)
     private Person result;
 
+    public PersonResponseBody() {
+        setCode("");
+        setMsg("");
+        setResult(new Person());
+    }
+    
     /**
      * @return the msg
      */
