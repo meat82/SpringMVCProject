@@ -2,10 +2,8 @@ package com.meat.spring.mvc.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.meat.spring.mvc.model.ModelMapper;
 import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.services.PersonService;
 
@@ -30,8 +27,6 @@ import com.meat.sql.jdbc.services.PersonService;
 public class HomeController {
 	
 	private static final Logger logger = Logger.getLogger(HomeController.class);
-
-	private static final String EXISTS = "Username already exists: ";
 	
 	@Autowired
 	PersonService personService;
@@ -94,9 +89,7 @@ public class HomeController {
     	List<Person> persons = personService.getPersons();
     	
     	model.addAttribute("persons", persons);
-    	Person person = new Person();
-    	person.setFirstName("mikko");
-    	model.addAttribute("person", person);
+    	model.addAttribute("person", new Person());
     	return "showPersons";
     }
     
@@ -108,24 +101,5 @@ public class HomeController {
         personService.addPerson(person);
         return "formProcess";
     }
-	/**
-	 * Spring automatically binds the userId
-	 * @param person
-	 * @return String indicating success or failure of save
-	 */
-	@RequestMapping(value="/userId", method=RequestMethod.POST)
-	@ResponseBody
-	public String getUserID(Person person) {
-
-		if(logger.isDebugEnabled()) {
-			logger.debug(person.toString());
-		}
-		List<Person> persons = personService.getPersonByUserName(person.getUserName());
-
-		if(persons.size() > 0) {
-			return EXISTS + persons.get(0).getUserName();
-		}
-		return "";
-	}
 	
 }

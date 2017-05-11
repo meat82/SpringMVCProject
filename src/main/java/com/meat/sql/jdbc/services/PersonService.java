@@ -13,4 +13,6 @@ public interface PersonService {
 	public boolean isValidUser(String userName, String passWord);
 
 	public List<Person> getPersonByUserName(String userName);
+
+    public Person getPerson(String userId);
 }

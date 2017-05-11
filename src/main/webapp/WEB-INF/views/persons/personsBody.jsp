@@ -3,27 +3,27 @@
 <%@ page session="false" %>
 
 <div id="nav-sidepanel" class="sidenav">
-	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<a href="javascript:void(0)" class="closebtn">&times;</a>
 	<form:form action="formProcess" method="post" modelAttribute="person">
 	    <div class="form-group">
 	        <label for="userName">User Name</label>
-	        <input name="userName" value="${person.userName}"/>
+	        <input name="userName" value="${person.userName}" id="userNameId"/>
 	    </div>
 		<div class="form-group">
 		    <label for="firstName">First Name</label>
-		    <input name="firstName" value="${person.firstName}"/>
+		    <input name="firstName" value="${person.firstName}" id="firstNameId"/>
 		</div>
 		<div class="form-group">
 		    <label for="lastName">Last Name</label>
-		    <input name="lastName" value="${person.lastName}"/>
+		    <input name="lastName" value="${person.lastName}" id="lastNameId"/>
 		</div>
 		<div class="form-group">
 		    <label for="eMail">E-Mail</label>
-		    <input name="email" value="${person.eMail}"/>
+		    <input name="email" value="${person.eMail}" id="emailId"/>
 		</div>
 		<div class="form-group">
 		    <label  for="phone">Phone</label>
-		    <input name="phone" value="${person.phone}"/>
+		    <input name="phone" value="${person.phone}" id="phoneId"/>
 		</div>
 	</form:form>
 </div>

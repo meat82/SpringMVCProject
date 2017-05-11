@@ -46,4 +46,10 @@ public class PersonServiceImpl implements PersonService {
 		return personDAO.getPersonByUserName(userName);		
 	}
 
+
+    @Override
+    public Person getPerson(String userId) {
+        return personDAO.getPerson(userId);
+    }
+
 }

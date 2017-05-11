@@ -2,8 +2,6 @@ package com.meat.sql.jdbc.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -76,6 +74,19 @@ public class PersonDAOImpl implements PersonDAO {
         }
         List<Person> persons = this.personTemplate.query(SQLCommand.SQL_SELECT_ALL, new PersonMapper());
         return persons;
+    }
+
+    @Override
+    public Person getPerson(String userId) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(
+                    "SQL Statement: " + SQLLogger.getSQLLog(SQLCommand.SQL_SELECT_USERID, new String[] { userId }));
+        }
+        List<Person> result = this.personTemplate.query(SQLCommand.SQL_SELECT_USERID,new Object[] { userId }, new PersonMapper());
+        if(result != null && !result.isEmpty()){
+            return result.get(0);
+        }
+        return null;
     }
 
 }
