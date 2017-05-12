@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.services.PersonService;
 
@@ -87,8 +89,15 @@ public class HomeController {
     @RequestMapping(value="/showAllPersons", method=RequestMethod.GET)
     public String showAllPersons(ModelMap model) {
     	List<Person> persons = personService.getPersons();
-    	
-    	model.addAttribute("persons", persons);
+    	ObjectMapper mapper = new ObjectMapper();
+    	String mappedValue = null;
+    	try {
+            mappedValue = mapper.writeValueAsString(persons);
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    	model.addAttribute("persons", mappedValue);
     	model.addAttribute("person", new Person());
     	return "showPersons";
     }

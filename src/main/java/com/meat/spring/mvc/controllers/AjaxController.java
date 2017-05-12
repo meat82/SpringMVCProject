@@ -81,4 +81,23 @@ public class AjaxController {
 
         return result;
     }
+    /**
+     * Get person using unique userId
+     * @ResponseBody, not necessary, since class is annotated with @RestController
+     * @RequestBody - Convert the json data into object (SearchCriteria) mapped by field name.
+     * @JsonView(Views.Public.class) - Optional, filters json data to display
+     * 
+     * @param userId
+     * @return Person
+     */
+    @JsonView(Views.Public.class)
+    @RequestMapping(value = "/deletePerson", method = RequestMethod.POST)
+    @ResponseBody
+    public PersonResponseBody deletePerson(@RequestBody String userId){
+        PersonResponseBody result = new PersonResponseBody();
+        personService.deletePerson(userId);
+        result.setCode("200");
+        result.setMsg("Person row deleted!");
+        return result;
+    }
 }

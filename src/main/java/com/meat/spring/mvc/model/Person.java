@@ -5,6 +5,7 @@ import com.meat.spring.mvc.ajax.Views;
 
 public class Person {
     
+    @JsonView(Views.Public.class)
 	private String userId;
 	
 	@JsonView(Views.Public.class)

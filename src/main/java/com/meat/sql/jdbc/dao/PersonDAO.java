@@ -15,4 +15,8 @@ public interface PersonDAO {
 	public List<Person> getPersonByUserName(String userName);
 
     public Person getPerson(String userId);
+    
+    public int deletePerson(String userId);
+    
+    public void modifyPerson(Person person);
 }

@@ -38,6 +38,7 @@
                 <th>Mail</th>
                 <th>Phone</th>
                 <th>Status</th>
+                <th>UserId</th>
             </tr>
         </thead>
         <tfoot>
@@ -48,23 +49,8 @@
                 <th>Mail</th>
                 <th>Phone</th>
                 <th>Status</th>
+                <th>UserId</th>
             </tr>
         </tfoot>
-        <tbody>
-        	<c:forEach var="personObject" items="${persons}" varStatus="status">
-        		<tr>
-        			<c:set var="userIdIndex" value="person_${status.index}"/>
-        			<td id="${userIdIndex}" class="userName">
-        				<input type="hidden" name="id" id="${userIdIndex}_hidden" value="${personObject.userId}">
-        				<a>${personObject.userName}</a>
-        			</td> 
-        			<td>${personObject.firstName}</td>
-        			<td>${personObject.lastName}</td>
-					<td>${personObject.eMail}</td>
-					<td>${personObject.phone}</td>
-					<td>${personObject.status}</td>
-        		</tr>
-        	</c:forEach>
-		</tbody>
 	</table>				
 </div>

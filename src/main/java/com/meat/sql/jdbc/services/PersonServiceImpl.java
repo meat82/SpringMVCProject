@@ -9,47 +9,50 @@ import com.meat.sql.jdbc.dao.PersonDAO;
 
 public class PersonServiceImpl implements PersonService {
 
-	@Autowired
-	private PersonDAO personDAO;
-	
-	
-	public PersonDAO getPersonDAO() {
+    @Autowired
+    private PersonDAO personDAO;
+
+    public PersonDAO getPersonDAO() {
         return personDAO;
     }
-
 
     public void setPersonDAO(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
 
+    @Override
+    public List<Person> getPersons() {
+        return personDAO.listAll();
+    }
 
     @Override
-	public List<Person> getPersons() {
-		return personDAO.listAll();
-	}
+    public void addPerson(Person person) {
+        personDAO.addPerson(person);
+    }
 
+    @Override
+    public boolean isValidUser(String userName, String passWord) {
+        return personDAO.isValid(userName, passWord);
+    }
 
-	@Override
-	public void addPerson(Person person) {
-		personDAO.addPerson(person);
-	}
-
-
-	@Override
-	public boolean isValidUser(String userName, String passWord) {
-		return personDAO.isValid(userName,passWord);
-	}
-
-
-	@Override
-	public List<Person> getPersonByUserName(String userName) {
-		return personDAO.getPersonByUserName(userName);		
-	}
-
+    @Override
+    public List<Person> getPersonByUserName(String userName) {
+        return personDAO.getPersonByUserName(userName);
+    }
 
     @Override
     public Person getPerson(String userId) {
         return personDAO.getPerson(userId);
+    }
+
+    @Override
+    public int deletePerson(String userId) {
+        return personDAO.deletePerson(userId);
+    }
+
+    @Override
+    public void modifyPerson(Person person) {
+        personDAO.modifyPerson(person);
     }
 
 }
