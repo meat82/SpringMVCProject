@@ -35,7 +35,7 @@
 		    select: true
 		});
 		$("#nav-sidepanel").hide();
-
+		$("#dialog-confirm").hide();
 		$('.showPersonBtn').click( function () {
 			var rows = $('#personsTable tbody .selected');
 		    var row_data = table.row( rows ).data();
@@ -65,28 +65,42 @@
 			$("#nav-sidepanel").show("slow");
 		} );
 		$('.deletePersonBtn').click( function () {
-			var rows = $('#personsTable tbody .selected');
-		    var row_data = table.row( rows ).data();
-		    var input_value = row_data.userId;
-			$.ajax({
-				type : "POST",
-				contentType : "application/json",
-				url : '${pageContext.request.contextPath}/views/deletePerson',
-				data : input_value,
-				dataType : 'json',
-				timeout : 100000,
-				success : function(data) {
-					console.log("Success: ", e);
-				},
-				error : function(e) {
-					console.log("ERROR: ", e);
-				},
-				done : function(e) {
-					console.log("DONE");
-				}
+		    $( "#dialog-confirm" ).dialog({
+		        resizable: false,
+		        height: "auto",
+		        width: 400,
+		        modal: true,
+		        buttons: {
+		          "Delete all items": function() {
+		  			var rows = $('#personsTable tbody .selected');
+				    var row_data = table.row( rows ).data();
+				    var input_value = row_data.userId;
+					$.ajax({
+						type : "POST",
+						contentType : "application/json",
+						url : '${pageContext.request.contextPath}/views/deletePerson',
+						data : input_value,
+						dataType : 'json',
+						timeout : 100000,
+						success : function(data) {
+							console.log("Success: ", e);
+						},
+						error : function(e) {
+							console.log("ERROR: ", e);
+						},
+						done : function(e) {
+							console.log("DONE");
+						}
+					});
+					rows.fadeToggle("slow","linear");
+					$( this ).dialog( "close" );
+		          },
+		          Cancel: function() {
+		            $( this ).dialog( "close" );
+		          }
+		        }
 			});
-			rows.fadeToggle("slow","linear");
-		} );
+		});
 	});
 	
 	$('.closebtn').click(function() {
