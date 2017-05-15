@@ -95,7 +95,8 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public void modifyPerson(Person person) {
-        // TODO Auto-generated method stub
+        this.personTemplate.update(SQLPersonCommands.UPDATE, new Object[] { person.getFirstName(), person.getLastName(),
+                person.geteMail(), person.getPhone(), person.getStatus(), person.getUserId() });
 
     }
 

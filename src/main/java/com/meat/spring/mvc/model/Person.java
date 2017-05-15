@@ -20,7 +20,6 @@ public class Person {
 	@JsonView(Views.Public.class)
 	private String status;
 	
-	@JsonView(Views.Public.class)
 	private String passWord;
 	
 	@JsonView(Views.Public.class)

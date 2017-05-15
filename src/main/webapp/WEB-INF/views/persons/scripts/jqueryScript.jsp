@@ -30,7 +30,7 @@
 	            }
 	        ],
 		    buttons: [
-		        'copy','showNode'
+		        'copy','showNode','deleteNode'
 		    ],
 		    select: true
 		});
@@ -53,6 +53,7 @@
 					$("#nav-sidepanel #lastNameId").val(data.result.lastName);
 					$("#nav-sidepanel #emailId").val(data.result.eMail);
 					$("#nav-sidepanel #phoneId").val(data.result.phone);
+					$("#nav-sidepanel #userIdId").val(data.result.userId);
 				},
 				error : function(e) {
 					console.log("ERROR: ", e);
@@ -62,6 +63,29 @@
 				}
 			});
 			$("#nav-sidepanel").show("slow");
+		} );
+		$('.deletePersonBtn').click( function () {
+			var rows = $('#personsTable tbody .selected');
+		    var row_data = table.row( rows ).data();
+		    var input_value = row_data.userId;
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : '${pageContext.request.contextPath}/views/deletePerson',
+				data : input_value,
+				dataType : 'json',
+				timeout : 100000,
+				success : function(data) {
+					console.log("Success: ", e);
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+				},
+				done : function(e) {
+					console.log("DONE");
+				}
+			});
+			rows.fadeToggle("slow","linear");
 		} );
 	});
 	
@@ -77,5 +101,14 @@
            },
 		className:'showPersonBtn'
 	};
+	$.fn.dataTable.ext.buttons.deleteNode = {
+		    text: 'Delete',
+	           exportOptions: {
+	               modifier: {
+	                   selected: true
+	               }
+	           },
+			className:'deletePersonBtn'
+		};
 
 </script>

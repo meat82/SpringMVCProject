@@ -110,5 +110,20 @@ public class HomeController {
         personService.addPerson(person);
         return "formProcess";
     }
+    @RequestMapping(value="/formProcessEdit", method=RequestMethod.POST)
+    public String processPersonFormEdit(@ModelAttribute("SpringWeb")Person person,ModelMap model) {
+        personService.modifyPerson(person);
+        List<Person> persons = personService.getPersons();
+        ObjectMapper mapper = new ObjectMapper();
+        String mappedValue = null;
+        try {
+            mappedValue = mapper.writeValueAsString(persons);
+        } catch (JsonProcessingException e) {
+            logger.error(e, e);
+        }
+        model.addAttribute("persons", mappedValue);
+        model.addAttribute("person", new Person());
+        return "showPersons";
+    }
 	
 }
