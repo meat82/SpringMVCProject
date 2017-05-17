@@ -2,7 +2,9 @@
 <head>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link href="<c:url value="jquery-ui.css" />" rel="stylesheet">
+	<link href="<c:url value="jquery-ui.structure.css" />" rel="stylesheet">
+	<link href="<c:url value="jquery-ui.theme.css" />" rel="stylesheet">
 	<link href="<c:url value="/views/resources/css/common.css" />" rel="stylesheet">
 	<link href="<c:url value="/views/resources/css/footer.css" />" rel="stylesheet">
 	<link href="<c:url value="/views/resources/css/menu.css" />" rel="stylesheet">
