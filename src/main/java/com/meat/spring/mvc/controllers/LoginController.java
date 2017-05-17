@@ -5,14 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.services.PersonService;
 
 @Controller
@@ -23,64 +24,46 @@ public class LoginController {
 	@Autowired
 	PersonService personService;
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response,Person person) {
-		
-		String loggedIn = (String) request.getSession().getAttribute("loggedInUser");
-		if(loggedIn != null) {
-			request.setAttribute("loggedInUser", loggedIn);
-			return new ModelAndView("loggedIn");
-		}
-		
-		return new ModelAndView("login", "person", new Person());
+    /**
+     * Simply selects the home view to render by returning its name.
+     */
+	@RequestMapping(value = "/auth", method = RequestMethod.GET)
+	public ModelAndView login(@RequestParam(value = "error", required = false) String error,@RequestParam(value = "logout", required = false) String logout , HttpServletRequest request) {
+
+	    LOGGER.info("username: " + request.getParameter("username"));
+	    LOGGER.info("error: " + error);
+
+	    ModelAndView model = new ModelAndView();
+	    if (error != null) {
+	        model.addObject("error", "Invalid username and password!");
+	    }
+
+	    if (logout != null) {
+	        model.addObject("msg", "You've been logged out successfully.");
+	    }
+	    model.setViewName("auth");
+
+	    return model;
+
+	}
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout (HttpServletRequest request, HttpServletResponse response) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	    return "login?logout=true";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
 	}
     /**
      * Simply selects the home view to render by returning its name.
      */
-    @RequestMapping(value = "/auth", method = RequestMethod.GET)
-    public String login(Model model) {
+    @RequestMapping(value = "/perform_login", method = RequestMethod.POST)
+    public String performLogin(@RequestParam(value = "error", required = false) String error) {
         
-        LOGGER.info("auth: ");
+        LOGGER.info("peform_login: " + error);
         
-        return "auth";
+        return "home";
     }
-	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
-	public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("SpringWeb") Person person) {
 
-		
-		boolean isValidUser = personService.isValidUser(person.getUserName(), person.getPassWord());
-		ModelAndView model;
-		if(isValidUser) {
-			if(LOGGER.isDebugEnabled()){
-				LOGGER.debug("User Login Successful");
-			}
-        	request.setAttribute("loggedInUser", person.getUserName());
-        	request.getSession().setAttribute("loggedInUser", person.getUserName());
-        	model = new ModelAndView("loginSuccess");
-		}
-		else {
-			if(LOGGER.isDebugEnabled()){
-				LOGGER.debug("Failed!");
-			}
-        	model = new ModelAndView("loginDeny");			
-		}
-		return model;
-	}
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ModelAndView logoutUser(HttpServletRequest request, HttpServletResponse response,Person person) {
-        
-        String loggedInUser = (String) request.getSession().getAttribute("loggedInUser");
-        if(loggedInUser != null) {
-            if(LOGGER.isDebugEnabled()){
-                LOGGER.debug("Ready to logout user: " + loggedInUser);
-            }
-            request.getSession().removeAttribute("loggedInUser");
-            return new ModelAndView("logout");
-        }
-        //if user haven't logged in before log out go to login
-        return new ModelAndView("login", "person", new Person()); 
-    }
 }
