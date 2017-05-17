@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +37,16 @@ public class LoginController {
 		
 		return new ModelAndView("login", "person", new Person());
 	}
-
+    /**
+     * Simply selects the home view to render by returning its name.
+     */
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public String login(Model model) {
+        
+        LOGGER.info("auth: ");
+        
+        return "auth";
+    }
 	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
 	public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("SpringWeb") Person person) {
 

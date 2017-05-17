@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="auth" extends="auth.definition">
+        <put-attribute name="body" value="/WEB-INF/views/auth/loginBody.jsp"></put-attribute>
+        <put-attribute name="customCss" value="/WEB-INF/views/auth/stylecss.jsp"></put-attribute>
+    </definition>
+</tiles-definitions>

@@ -21,3 +21,10 @@ div.layout_body {
 	 width:80%;
 	 border-left:1px solid pink;"
 }
+div.layout_body_auth {
+	 float:left;
+	 padding-left:10px;
+	 padding-bottom:70px;
+	 width:100%;
+	 border-left:1px solid pink;"
+}
