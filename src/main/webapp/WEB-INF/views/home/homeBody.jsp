@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="home_content">
 	
 	<p>This is suppose to be my demo environment. I’ve always liked to play around different web techniques so I set-up little playground for myself</p>
@@ -9,5 +9,7 @@
 	<p>I’ve also play around little bit <a href="https://angularjs.org/">AngularJS</a> and <a href="http://www.gwtproject.org/">Google Web Toolkit</a> but those examples are included later</p>
 	
 	<p>These pages are using HTML5, CSS3 and JQuery. There’s also usage of <a href="http://datatables.net/">DataTables.net</a> with table decorator</p>
+	
+	<p>Logged in user <strong><sec:authentication property="principal.username" /></strong></p>
 	
 </div>
