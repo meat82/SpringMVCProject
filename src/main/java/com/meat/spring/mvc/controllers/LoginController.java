@@ -55,15 +55,6 @@ public class LoginController {
 	    }
 	    return "login?logout=true";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
 	}
-    /**
-     * Simply selects the home view to render by returning its name.
-     */
-    @RequestMapping(value = "/perform_login", method = RequestMethod.POST)
-    public String performLogin(@RequestParam(value = "error", required = false) String error) {
-        
-        LOGGER.info("peform_login: " + error);
-        
-        return "home";
-    }
+
 
 }
