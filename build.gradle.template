@@ -7,7 +7,8 @@ def web_app = 'F:/workspaces/springmvctest/build/libs'
 def warName = 'springproject'
 
 ext{
-	springVersion='4.0.7.RELEASE'
+	springVersion='4.2.2.RELEASE'
+	springDataVersion='2.1.4.RELEASE'
 	gwtVersion='2.6.0'
 	javaServletApiVersion='2.5'
 	javaServletJstlVersion='1.2'
@@ -20,6 +21,8 @@ ext{
 	freeMarkerVersion='2.3.15'
 	mvelVersion='2.0.11'
 	ognlVersion='2.7.3'
+	jacksonVersion='2.6.3'
+	log4jVersion='1.2.17'
 	
 }
 
@@ -36,23 +39,23 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
-    compile ("org.springframework:spring-webmvc:" + springVersion)
-    compile ("org.springframework:spring-jdbc:" + springVersion)
+    compile("org.springframework:spring-webmvc:" + springVersion)
+    compile("org.springframework:spring-jdbc:" + springVersion)
+    compile("org.springframework.security:spring-security-web:" + springVersion)
+    compile("org.springframework.security:spring-security-config:" + springVersion)
+    compile("org.springframework.security:spring-security-taglibs:" + springVersion)
+    compile("org.springframework.data:spring-data-solr:" + springDataVersion)
 	compile("javax.servlet:servlet-api:" + javaServletApiVersion)
 	compile("javax.servlet:jstl:" + javaServletJstlVersion)
 	compile("javax.servlet.jsp:jsp-api:" + javaServletJpsVersion)
 	compile("org.slf4j:slf4j-api:" + slf4jVersion)
-	
-	//GWT dependency START
-	compile("com.google.gwt:gwt-servlet:" + gwtVersion)
-	compile("com.google.gwt:gwt-user:" + gwtVersion)
-	compile("com.google.gwt:gwt-dev:" + gwtVersion)
-	compile("com.google.gwt:gwt-codeserver:" + gwtVersion)
-	//GWT dependency END
+	compile("log4j:log4j:" + log4jVersion)
+	compile("com.fasterxml.jackson.core:jackson-core:" + jacksonVersion)
+	compile("com.fasterxml.jackson.core:jackson-databind:" + jacksonVersion)
 	
 	compile("mysql:mysql-connector-java:" + mySqlVersion)
 	
@@ -71,7 +74,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = '3.4'
 }
 task webDeploy() {
     copy {
