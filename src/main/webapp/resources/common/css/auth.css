@@ -5,3 +5,9 @@ div.auth_wrapper {
 form.auth_form {
 	margin: auto;
 }
+div.error{
+	color: red;
+	font-size: large;
+	font-style: italic;
+	font-weight: bold;
+}
