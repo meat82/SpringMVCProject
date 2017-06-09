@@ -15,12 +15,6 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/common/" />
 	<resources mapping="/**" location="/resources/jquery-ui-1.12.1.custom/" />
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
-	 -->
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
