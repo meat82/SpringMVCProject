@@ -3,27 +3,25 @@ package com.meat.sql.jdbc.dao;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.meat.spring.mvc.model.Person;
 import com.meat.sql.jdbc.mapper.PersonMapper;
-import com.meat.sql.utils.SQLPersonCommands;
 import com.meat.sql.utils.SQLLogger;
+import com.meat.sql.utils.SQLPersonCommands;
 
 public class PersonDAOImpl implements PersonDAO {
 
     private static final Logger logger = Logger.getLogger(PersonDAOImpl.class);
 
-    @Autowired
-    private JdbcTemplate personTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-    public JdbcTemplate getPersonTemplate() {
-        return personTemplate;
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
     }
 
-    public void setPersonTemplate(JdbcTemplate personTemplate) {
-        this.personTemplate = personTemplate;
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -33,7 +31,7 @@ public class PersonDAOImpl implements PersonDAO {
                     new String[] { person.getUserId(), person.getFirstName(), person.getLastName(), person.geteMail(),
                             person.getPhone(), person.getStatus(), person.getPassWord(), person.getUserName() }));
         }
-        personTemplate.update(SQLPersonCommands.INSERT,
+        jdbcTemplate.update(SQLPersonCommands.INSERT,
                 new Object[] { person.getUserId(), person.getFirstName(), person.getLastName(), person.geteMail(),
                         person.getPhone(), person.getStatus(), person.getPassWord(), person.getUserName() });
     }
@@ -45,7 +43,7 @@ public class PersonDAOImpl implements PersonDAO {
                     + SQLLogger.getSQLLog(SQLPersonCommands.SELECT_USERNAME, new String[] { userName }));
         }
 
-        return personTemplate.query(SQLPersonCommands.SELECT_USERNAME, new Object[] { userName }, new PersonMapper());
+        return jdbcTemplate.query(SQLPersonCommands.SELECT_USERNAME, new Object[] { userName }, new PersonMapper());
     }
 
     @Override
@@ -54,7 +52,7 @@ public class PersonDAOImpl implements PersonDAO {
             logger.debug("SQL Statement: " + SQLLogger.getSQLLog(SQLPersonCommands.SELECT_USERNAME_AND_PASSWORD,
                     new String[] { userName, passWord }));
         }
-        List<Person> persons = personTemplate.query(SQLPersonCommands.SELECT_USERNAME_AND_PASSWORD,
+        List<Person> persons = jdbcTemplate.query(SQLPersonCommands.SELECT_USERNAME_AND_PASSWORD,
                 new Object[] { userName, passWord }, new PersonMapper());
         if (persons.size() > 0) {
             return true;
@@ -67,7 +65,7 @@ public class PersonDAOImpl implements PersonDAO {
         if (logger.isDebugEnabled()) {
             logger.debug("SQL Statement: " + SQLPersonCommands.SELECT_ALL);
         }
-        List<Person> persons = this.personTemplate.query(SQLPersonCommands.SELECT_ALL, new PersonMapper());
+        List<Person> persons = this.jdbcTemplate.query(SQLPersonCommands.SELECT_ALL, new PersonMapper());
         return persons;
     }
 
@@ -77,7 +75,7 @@ public class PersonDAOImpl implements PersonDAO {
             logger.debug(
                     "SQL Statement: " + SQLLogger.getSQLLog(SQLPersonCommands.SELECT_USERID, new String[] { userId }));
         }
-        List<Person> result = this.personTemplate.query(SQLPersonCommands.SELECT_USERID, new Object[] { userId },
+        List<Person> result = this.jdbcTemplate.query(SQLPersonCommands.SELECT_USERID, new Object[] { userId },
                 new PersonMapper());
         if (result != null && !result.isEmpty()) {
             return result.get(0);
@@ -90,12 +88,12 @@ public class PersonDAOImpl implements PersonDAO {
         if (logger.isDebugEnabled()) {
             logger.debug("SQL Statement: " + SQLLogger.getSQLLog(SQLPersonCommands.DELETE, new String[] { userId }));
         }
-        return this.personTemplate.update(SQLPersonCommands.DELETE, new Object[] { userId });
+        return this.jdbcTemplate.update(SQLPersonCommands.DELETE, new Object[] { userId });
     }
 
     @Override
     public void modifyPerson(Person person) {
-        this.personTemplate.update(SQLPersonCommands.UPDATE, new Object[] { person.getFirstName(), person.getLastName(),
+        this.jdbcTemplate.update(SQLPersonCommands.UPDATE, new Object[] { person.getFirstName(), person.getLastName(),
                 person.geteMail(), person.getPhone(), person.getStatus(), person.getUserId() });
 
     }

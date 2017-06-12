@@ -9,7 +9,6 @@ import com.meat.sql.jdbc.dao.PersonDAO;
 
 public class PersonServiceImpl implements PersonService {
 
-    @Autowired
     private PersonDAO personDAO;
 
     public PersonDAO getPersonDAO() {

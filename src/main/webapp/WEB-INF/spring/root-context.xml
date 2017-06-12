@@ -15,7 +15,7 @@
 	</bean>  
 	  
 	<bean id="pdao" class="com.meat.sql.jdbc.dao.PersonDAOImpl">  
-		<property name="personTemplate" ref="jdbcTemplate"></property>  
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>  
 	</bean>
 
 	<bean id="personService" class="com.meat.sql.jdbc.services.PersonServiceImpl">  
