@@ -9,15 +9,6 @@
 		</layout>
 	</appender>
 
-	<appender name="ROLL" class="org.apache.log4j.RollingFileAppender">
-
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%c{1} - %m%n" />
-		</layout>
-		<param name="File" value="/temp/weblog/application.log" />
-		<param name="MaxFileSize" value="5MB" />
-	</appender>
-
 	<!-- Application Loggers -->
 	<logger name="com.meat">
 		<level value="debug" />
