@@ -22,7 +22,7 @@ import com.meat.sql.jdbc.services.PersonService;
 @RestController
 public class AjaxController {
 
-    private static final String EXISTS1 = "Username already exists: ";
+    private static final String EXISTS = "Username already exists: ";
 
     private static final Logger logger = Logger.getLogger(AjaxController.class);
 
