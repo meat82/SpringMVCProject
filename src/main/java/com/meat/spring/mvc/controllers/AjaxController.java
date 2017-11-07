@@ -22,7 +22,7 @@ import com.meat.sql.jdbc.services.PersonService;
 @RestController
 public class AjaxController {
 
-    private static final String EXISTS = "Username already exists: ";
+    private static final String EXISTS1 = "Username already exists: ";
 
     private static final Logger logger = Logger.getLogger(AjaxController.class);
 
@@ -31,7 +31,7 @@ public class AjaxController {
 
     /**
      * Spring automatically binds the userId
-     * 
+     *
      * @param person
      * @return String indicating success or failure of save
      */
@@ -55,7 +55,7 @@ public class AjaxController {
      * @ResponseBody, not necessary, since class is annotated with @RestController
      * @RequestBody - Convert the json data into object (SearchCriteria) mapped by field name.
      * @JsonView(Views.Public.class) - Optional, filters json data to display
-     * 
+     *
      * @param userId
      * @return Person
      */
@@ -83,7 +83,7 @@ public class AjaxController {
      * @ResponseBody, not necessary, since class is annotated with @RestController
      * @RequestBody - Convert the json data into object (SearchCriteria) mapped by field name.
      * @JsonView(Views.Public.class) - Optional, filters json data to display
-     * 
+     *
      * @param userId
      * @return Person
      */
